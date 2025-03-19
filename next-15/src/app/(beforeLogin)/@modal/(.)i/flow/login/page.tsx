@@ -3,7 +3,7 @@
 export default function Page() {
   return (
     <div className="w-screen h-screen bg-[rgba(0,0,0,0.4)] absolute top-0 left-0 flex justify-center items-center ]">
-      <div className="bg-white relative top-[5%] max-w-[80vw] min-w-[600px] h-[450px] rounded-[16px] flex flex-col ">
+      <div className="bg-white relative top-[-5%] max-w-[80vw] min-w-[600px] h-[450px] rounded-[16px] flex flex-col ">
         <div className="h-[48px] flex items-center px-[16px] w-full">
           <button className="w-[34px] h-[34px] rounded-full hover:bg-[rgba(15,20,25,0.1)] flex items-center justify-center cursor-pointer">
             <svg
