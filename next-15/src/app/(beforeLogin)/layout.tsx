@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 export default function Layout({
   children,
@@ -8,9 +8,9 @@ export default function Layout({
   modal: ReactNode;
 }) {
   return (
-    <>
+    <div className="h-[100dvh] w-[100dvw]">
       {children}
       {modal}
-    </>
+    </div>
   );
 }
