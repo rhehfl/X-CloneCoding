@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
 export default function SignupModal() {
   const router = useRouter();
@@ -9,7 +9,7 @@ export default function SignupModal() {
   };
 
   return (
-    <div className="flex bg-[rgba(0,0,0,0.4)] h-sxcreen justify-center w-screen ] absolute items-center left-0 top-0">
+    <div className="flex bg-[rgba(0,0,0,0.4)] h-screen justify-center w-screen ] absolute items-center left-0 top-0">
       <div className="flex flex-col bg-white h-[550px] rounded-[16px] max-w-[80vw] min-w-[600px] relative top-[-5%]">
         <div className="flex h-[48px] w-full items-center px-[16px]">
           <button
