@@ -10,7 +10,7 @@ export default function SignupModal() {
 
   return (
     <div className="flex bg-[rgba(0,0,0,0.4)] h-screen justify-center w-screen ] absolute items-center left-0 top-0">
-      <div className="flex flex-col bg-white h-[550px] rounded-[16px] max-w-[80vw] min-w-[600px] relative top-[-5%]">
+      <div className="flex flex-col bg-white h-[550px] rounded-[16px] max-w-[ 80vw] min-w-[600px] relative top-[-5%]">
         <div className="flex h-[48px] w-full items-center px-[16px]">
           <button
             onClick={handleClose}
@@ -86,7 +86,13 @@ export default function SignupModal() {
             </div>
 
             <div className="py-[24px]">
-              <button className="bg-[rgb(15,20,25,0.44)] h-[50px] rounded-[24px] text-white w-full cursor-pointer hover:bg-[rgb(15,20,25)]">
+              <button
+                className="
+              bg-[rgb(15,20,25,0.8)] h-[50px] rounded-[24px]
+              text-white w-full cursor-pointer hover:bg-[rgb(15,20,25)]
+                disabled:bg-[rgb(15,20,25,0.44)]"
+                disabled
+              >
                 가입하기
               </button>
             </div>
