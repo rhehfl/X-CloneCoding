@@ -1,2 +1,0 @@
-# X-CloneCoding
-Next.js
