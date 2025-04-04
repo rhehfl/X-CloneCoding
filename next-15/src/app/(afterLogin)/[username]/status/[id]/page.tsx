@@ -1,4 +1,4 @@
-import CommentForm from '@/app/(afterLogin)/[username]/status/[id]/_component/CommentForm';
+import CommentForm from '@/app/(afterLogin)/_component/CommentForm';
 import BackButton from '@/app/(afterLogin)/_component/BackButton';
 import Post from '@/app/(afterLogin)/_component/Post';
 
@@ -9,6 +9,7 @@ export default function SinglePost() {
         <BackButton />
         <h3 className="ml-[30px] text-[20px] font-bold">게시하기</h3>
       </div>
+      <div className="h-[53px]"></div>
       <Post />
       <CommentForm />
       <div>

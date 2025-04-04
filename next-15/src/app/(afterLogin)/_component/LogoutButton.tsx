@@ -9,7 +9,7 @@ export default function LogoutButton() {
     image: '/5Udwvqim.jpg',
   };
   return (
-    <button className="flex items-center w-[258px] h-[66px] cursor-pointer p-3 hover:bg-[rgba(15,20,25,0.1)] hover:rounded-[33px]">
+    <button className="my-3 flex h-[66px] cursor-pointer items-center p-3 hover:rounded-[33px] hover:bg-[rgba(15,20,25,0.1)]">
       <Image
         src={me.image}
         alt={me.id}
@@ -17,7 +17,7 @@ export default function LogoutButton() {
         height={40}
         className="rounded-full"
       />
-      <div className="text-left ml-2">
+      <div className="ml-2 hidden text-left xl:block">
         <div className="font-bold">{me.nickname}</div>
         <span>{me.id}</span>
       </div>

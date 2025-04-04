@@ -3,13 +3,19 @@ import Image from 'next/image';
 import Link from 'next/link';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/ko';
-import ActionButtons from '@/app/(afterLogin)/home/_component/ActionButtons';
+import ActionButtons from '@/app/(afterLogin)/_component/ActionButtons';
 import PostArticle from '@/app/(afterLogin)/_component/PostArticle';
+import { faker } from '@faker-js/faker';
+import PostImages from '@/app/(afterLogin)/_component/PostImages';
 
 dayjs.extend(relativeTime);
 dayjs.locale('ko');
 
-export default function Post() {
+type Img = { imageId: number; link: string };
+interface PostProps {
+  noImage?: boolean;
+}
+export default function Post({ noImage = false }: PostProps) {
   const target = {
     User: {
       id: 'elonmusk',
@@ -19,8 +25,15 @@ export default function Post() {
     postId: 1,
     content: '클론코딩 라이브로 하니 너무 힘들어요 ㅠㅠ',
     createdAt: new Date(),
-    Images: [],
+    Images: [] as Img[],
   };
+
+  if (Math.random() < 0.5 && !noImage) {
+    target.Images.push({ imageId: 1, link: faker.image.urlLoremFlickr() });
+    target.Images.push({ imageId: 2, link: faker.image.urlLoremFlickr() });
+    target.Images.push({ imageId: 23, link: faker.image.urlLoremFlickr() });
+    target.Images.push({ imageId: 32, link: faker.image.urlLoremFlickr() });
+  }
 
   return (
     <PostArticle post={target}>
@@ -62,8 +75,8 @@ export default function Post() {
         </div>
         <p className="text-[15px]">{target.content}</p>
 
-        <div className="rounded-8 relative mt-3 h-[500px] w-full">
-          <Image src="/5Udwvqim.jpg" fill alt="사진" className="rounded-8" />
+        <div className="max-h-[510px]">
+          <PostImages target={target}></PostImages>
         </div>
         <ActionButtons />
       </div>

@@ -1,9 +1,12 @@
 'use client';
 import clsx from 'clsx';
 
-export default function ActionButtons() {
+interface ActionButtonsProps {
+  white?: boolean;
+}
+export default function ActionButtons({ white = false }: ActionButtonsProps) {
   const comented = true;
-  const reposted = true;
+  const reposted = false;
   const isLiked = false;
 
   return (
@@ -19,6 +22,7 @@ export default function ActionButtons() {
               aria-hidden="true"
               className={clsx([
                 'transition-colors duration-200 group-hover:fill-[rgb(29,155,240)]',
+                comented || (white && 'fill-white'),
                 comented ? 'fill-[rgb(29,155,240)]' : 'fill-[rgb(83,100,113)]',
               ])}
             >
@@ -31,7 +35,8 @@ export default function ActionButtons() {
           <span
             className={clsx(
               'pl-1 text-[13px] transition-colors duration-200 group-hover:text-[rgb(29,155,240)]',
-              comented ? 'text-[rgb(29,155,240)]' : 'text-[rgb(83,100,113)]'
+              comented ? 'text-[rgb(29,155,240)]' : 'text-[rgb(83,100,113)]',
+              comented || (white && 'text-white')
             )}
           >
             1.1k
@@ -47,7 +52,8 @@ export default function ActionButtons() {
               aria-hidden="true"
               className={clsx(
                 'transition-colors duration-200 group-hover:fill-[rgb(0,186,124)]',
-                reposted ? 'fill-[rgb(0,186,124)]' : 'fill-[#536471]'
+                reposted ? 'fill-[rgb(0,186,124)]' : 'fill-[#536471]',
+                reposted || (white && 'fill-white')
               )}
             >
               <g>
@@ -59,6 +65,7 @@ export default function ActionButtons() {
             className={clsx([
               'pl-1 text-[13px] transition-colors duration-200 group-hover:text-[rgb(0,186,124)]',
               reposted ? 'text-[rgb(0,186,124)]' : 'text-[rgb(83,100,113)]',
+              reposted || (white && 'text-white'),
             ])}
           >
             1.2k
@@ -74,7 +81,8 @@ export default function ActionButtons() {
               aria-hidden="true"
               className={clsx(
                 'transition-colors duration-200 group-hover:fill-[rgb(249,24,128)]',
-                isLiked ? 'fill-[rgb(249,24,128)]' : 'fill-[rgb(83,100,113)]'
+                isLiked ? 'fill-[rgb(249,24,128)]' : 'fill-[rgb(83,100,113)]',
+                isLiked || (white && 'fill-white')
               )}
             >
               <g>
@@ -85,7 +93,8 @@ export default function ActionButtons() {
           <span
             className={clsx(
               'duration-200pl-1 text-[13px] transition-colors group-hover:text-[rgb(249,24,128)]',
-              isLiked ? 'text-[rgb(249,24,128)]' : 'text-[rgb(83,100,113)]'
+              isLiked ? 'text-[rgb(249,24,128)]' : 'text-[rgb(83,100,113)]',
+              isLiked || (white && 'text-white')
             )}
           >
             3.2m

@@ -5,9 +5,11 @@ import { useRouter } from 'next/navigation';
 
 export default function Page() {
   const router = useRouter();
+
   const handleclose = () => {
     router.back();
   };
+
   return (
     <div className="absolute top-0 left-0 z-20 flex h-full w-full justify-center bg-[rgb(0,0,0,0.4)]">
       <div className="relative top-[5%] flex max-h-[90vh] max-w-[80vw] min-w-[600px] flex-col rounded-[16px] bg-white">
