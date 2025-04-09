@@ -1,3 +1,5 @@
+import Form from 'next/form';
+
 interface SearchFormProps {
   q?: string;
 }
@@ -5,7 +7,8 @@ interface SearchFormProps {
 export default function SearchForm({ q }: SearchFormProps) {
   return (
     <div className="mb-[12px] h-[53px] w-[inherit]">
-      <form
+      <Form
+        action="search"
         className={`fixed z-10 mt-[6px] mb-[12px] flex h-[42px] w-[inherit] items-center rounded-[21px] border border-solid border-gray-500 bg-white focus-within:border-2 focus-within:border-blue-500`}
       >
         <svg
@@ -21,10 +24,11 @@ export default function SearchForm({ q }: SearchFormProps) {
         <input
           type="search"
           placeholder="Search"
+          name="q"
           className="w-full pr-[16px] pl-[4px] focus:outline-none"
           defaultValue={q}
         />
-      </form>
+      </Form>
     </div>
   );
 }
