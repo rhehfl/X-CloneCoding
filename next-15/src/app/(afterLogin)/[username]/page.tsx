@@ -33,7 +33,7 @@ export default function Profile() {
         &nbsp;
         <span>0 팔로우 중</span>
       </div>
-      <Post />
+      {/* <Post /> */}
     </main>
   );
 }

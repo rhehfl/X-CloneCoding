@@ -8,6 +8,7 @@ import TrendSection from '@/app/(afterLogin)/_component/TrendSection';
 import FollowRecommend from '@/app/(afterLogin)/_component/FollowRecommend';
 import RightSearchZone from '@/app/(afterLogin)/_component/RightSearchZone';
 import { auth } from '@/auth';
+import RQProvider from '@/app/(afterLogin)/_component/RQProvider';
 interface AfterLoginLayoutProps {
   children: ReactNode;
   modal: ReactNode;
@@ -59,26 +60,28 @@ export default async function AfterLoginLayout({
           </div>
         </section>
       </header>
-      <div className="flex-grow-1">
-        <div className="flex h-full justify-between lg:w-[990px]">
-          <main className="w-[600px]">{children}</main>
-          <div className="hidden w-[350px] flex-col items-stretch lg:flex">
-            <RightSearchZone />
-            <TrendSection />
-            <div className="flex flex-col rounded-[16px] bg-[rgb(239,243,244)]">
-              <div className="px-[16px] py-[12px] text-[20px] font-bold">
-                <h3>팔로우 추천</h3>
-                <ul>
-                  <FollowRecommend />
-                  <FollowRecommend />
-                  <FollowRecommend />
-                </ul>
+      <RQProvider>
+        <div className="flex-grow-1">
+          <div className="flex h-full justify-between lg:w-[990px]">
+            <main className="w-[600px]">{children}</main>
+            <div className="hidden w-[350px] flex-col items-stretch lg:flex">
+              <RightSearchZone />
+              <TrendSection />
+              <div className="flex flex-col rounded-[16px] bg-[rgb(239,243,244)]">
+                <div className="px-[16px] py-[12px] text-[20px] font-bold">
+                  <h3>팔로우 추천</h3>
+                  <ul>
+                    <FollowRecommend />
+                    <FollowRecommend />
+                    <FollowRecommend />
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      {modal}
+        {modal}
+      </RQProvider>
     </div>
   );
 }

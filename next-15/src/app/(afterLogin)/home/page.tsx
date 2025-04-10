@@ -1,19 +1,32 @@
-import Post from '@/app/(afterLogin)/_component/Post';
 import PostForm from '@/app/(afterLogin)/_component/PostForm';
+import PostRecommends from '@/app/(afterLogin)/home/_component/PostRecommends';
 import Tab from '@/app/(afterLogin)/home/_component/Tab';
 import { TabProvider } from '@/app/(afterLogin)/home/_component/TabProvider';
+import getPostRecommends from '@/app/(afterLogin)/home/_lib/getPostRecommends';
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
 
-export default function Home() {
+export default async function Home() {
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery({
+    queryKey: ['posts', 'recommends'],
+    queryFn: getPostRecommends,
+  });
+  const dehydratedState = dehydrate(queryClient);
+
   return (
     <main className="flex h-full w-[600px] flex-col items-stretch border-x-1 border-solid border-[rgba(239,243,244)]">
-      <TabProvider>
-        <Tab />
-        <div className="h-[53px]" />
-        <PostForm />
-        <Post />
-        <Post />
-        <Post />
-      </TabProvider>
+      <HydrationBoundary state={dehydratedState}>
+        <TabProvider>
+          <Tab />
+          <div className="h-[53px]" />
+          <PostForm />
+          <PostRecommends />
+        </TabProvider>
+      </HydrationBoundary>
     </main>
   );
 }

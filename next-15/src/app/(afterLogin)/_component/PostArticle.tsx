@@ -1,26 +1,16 @@
 'use client';
+import type { Post as IPost } from '@/app/model/Post';
 import { useRouter } from 'next/navigation';
 import { ReactNode } from 'react';
 
 interface PostArticleProps {
-  post: {
-    postId: number;
-    content: string;
-    createdAt: Date;
-    Images: unknown[];
-
-    User: {
-      id: string;
-      nickname: string;
-      image: string;
-    };
-  };
+  post: IPost;
   children: ReactNode;
 }
 export default function PostArticle({ post, children }: PostArticleProps) {
   const router = useRouter();
   const handleOnClick = () => {
-    router.push(`/${post.User.id}/status/${post.postId}`);
+    router.push(`/${post.user.id}/status/${post.postId}`);
   };
 
   return (
