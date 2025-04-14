@@ -1,19 +1,17 @@
 import { Post } from '@/app/model/Post';
 import { QueryFunction } from '@tanstack/react-query';
 
-const getSearchResult: QueryFunction<
+const getComments: QueryFunction<
   Post[],
-  [string, string, { q: string; f: string; pf: string }]
+  [string, string, id: string]
 > = async ({ queryKey }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_1, _2, searchQuery] = queryKey;
-  const urlSearchParams = new URLSearchParams(searchQuery);
-
+  const [_1, _2, id] = queryKey;
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/search/${urlSearchParams.toString()}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts/${id}/comments`,
     {
       next: {
-        tags: ['posts', 'search', searchQuery.q],
+        tags: ['posts', id, 'comments'],
       },
     }
   );
@@ -23,4 +21,4 @@ const getSearchResult: QueryFunction<
   return res.json();
 };
 
-export default getSearchResult;
+export default getComments;

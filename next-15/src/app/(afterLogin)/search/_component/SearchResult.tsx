@@ -12,6 +12,5 @@ export default function SearchResult({ searchQuery }: SearchResultProps) {
     queryKey: ['posts', 'search', searchQuery],
     queryFn: getSearchResult,
   });
-  console.log(posts);
   return posts?.map((post) => <Post key={post.postId} post={post} />);
 }

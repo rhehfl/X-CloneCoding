@@ -1,9 +1,10 @@
 'use client';
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { ChangeEventHandler, useState } from 'react';
 export default function CommentForm() {
   const [content, setContent] = useState('');
-
+  const { data: me } = useSession();
   const handleContent: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
     e.currentTarget.style.height = 'auto';
     e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
@@ -15,7 +16,7 @@ export default function CommentForm() {
       <div className="mr-3 h-[88px] w-[40px]">
         <div className="relative h-[40px] w-[40px]">
           <Image
-            src="/elone.jpg"
+            src={me?.user?.image as string}
             fill
             alt="프로필이미지"
             className="rounded-full"

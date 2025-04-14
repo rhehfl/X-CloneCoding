@@ -1,39 +1,46 @@
+import ImageZone from '@/app/(afterLogin)/@modal/[username]/status/[id]/photo/[photoId]/_component/ImageZone';
 import PhotoModalCloseButton from '@/app/(afterLogin)/@modal/[username]/status/[id]/photo/[photoId]/_component/PhotoModalCloseButton';
-import ActionButtons from '@/app/(afterLogin)/_component/ActionButtons';
 import CommentForm from '@/app/(afterLogin)/_component/CommentForm';
+import Comments from '@/app/(afterLogin)/_component/Comments';
+import SinglePost from '@/app/(afterLogin)/_component/SinglePost';
+import getComments from '@/app/(afterLogin)/_lib/getComments';
+import getSinglePost from '@/app/(afterLogin)/_lib/getSinglePost';
 import ScrollRock from '@/app/_component/ScrollRock';
-import { faker } from '@faker-js/faker';
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
 
-export default function PageModal() {
-  const image = {
-    imageId: 1,
-    link: faker.image.urlPicsumPhotos({ width: 600, height: 700 }),
-  };
+interface PageModalProps {
+  params: Promise<{ id: string }>;
+}
+export default async function PageModal({ params }: PageModalProps) {
+  const { id } = await params;
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery({
+    queryKey: ['posts', id],
+    queryFn: getSinglePost,
+  });
+  await queryClient.prefetchQuery({
+    queryKey: ['posts', id, 'comments'],
+    queryFn: getComments,
+  });
+  const dehydratedState = dehydrate(queryClient);
   return (
     <>
       <ScrollRock />
       <div className="fixed z-20 h-full w-full overflow-hidden bg-[rgba(0,0,0,0.85)]">
         <PhotoModalCloseButton />
         <div className="flex h-full w-full">
-          <div className="flex flex-1 flex-col">
-            <div
-              className="flex-1 bg-contain bg-center bg-no-repeat"
-              style={{ backgroundImage: `url(${image.link})` }}
-            ></div>
-            <div className="flex items-center justify-center">
-              <div className="h-[60px] w-[700px]">
-                <ActionButtons white />
-              </div>
-            </div>
-          </div>
+          <ImageZone id={id} />
 
           <div className="flex w-[350px] flex-col overflow-auto bg-white">
-            {/* <Post noImage></Post> */}
-            <CommentForm />
-            {/* <Post></Post>
-            <Post></Post>
-            <Post></Post>
-            <Post></Post> */}
+            <HydrationBoundary state={dehydratedState}>
+              <SinglePost id={id} noImage />
+              <CommentForm />
+              <Comments id={id} />
+            </HydrationBoundary>
           </div>
         </div>
       </div>

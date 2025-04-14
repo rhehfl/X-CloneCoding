@@ -1,10 +1,12 @@
 'use client';
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { ChangeEventHandler, useRef, useState } from 'react';
 
 export default function PostForm() {
   const [content, setContent] = useState('');
   const imageRef = useRef<HTMLInputElement>(null);
+  const { data: me } = useSession();
   const handleChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
     e.currentTarget.style.height = 'auto';
     e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
@@ -22,7 +24,14 @@ export default function PostForm() {
       <form className="flex h-full w-full">
         <div className="mr-2 h-full pt-3">
           <div className="relative h-[40px] w-[40px]">
-            <Image src="/zlogo.png" fill alt="프로필사진" />
+            {me?.user?.image && (
+              <Image
+                src={me?.user?.image}
+                fill
+                alt="프로필사진"
+                className="rounded-full"
+              />
+            )}
           </div>
         </div>
         <div className="flex w-full flex-col">

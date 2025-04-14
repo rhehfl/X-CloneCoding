@@ -12,11 +12,10 @@ function generateDate() {
 }
 const User = [
   { id: 'elonmusk', nickname: 'Elone', image: '/elone.jpg' },
-  { id: 'zerohch0', nickname: '제로초', image: '/5Udwvqim.jpg' },
+  { id: 'zerocho0', nickname: '제로초', image: '/5Udwvqim.jpg' },
 ];
 export const handlers = [
   http.post(`${baseUrl}/api/login`, () => {
-    console.log('로그인');
     return HttpResponse.json(User[1], {
       headers: {
         'Set-Cookie': 'connect.sid=msw-cookie;HttpOnly;Path=/',
@@ -43,6 +42,116 @@ export const handlers = [
     });
   }),
   http.get(`${baseUrl}/api/postRecommends`, ({}) => {
+    return HttpResponse.json([
+      {
+        postId: 1,
+        user: User[0],
+        content: `${1} Z.com is so marvelous. I'm gonna buy that.`,
+        Images: [{ imageId: 1, link: faker.image.urlLoremFlickr() }],
+        createdAt: generateDate(),
+      },
+      {
+        postId: 2,
+        user: User[0],
+        content: `${2} Z.com is so marvelous. I'm gonna buy that.`,
+        Images: [
+          { imageId: 1, link: faker.image.urlLoremFlickr() },
+          { imageId: 2, link: faker.image.urlLoremFlickr() },
+        ],
+        createdAt: generateDate(),
+      },
+      {
+        postId: 3,
+        user: User[0],
+        content: `${3} Z.com is so marvelous. I'm gonna buy that.`,
+        Images: [],
+        createdAt: generateDate(),
+      },
+      {
+        postId: 4,
+        user: User[0],
+        content: `${4} Z.com is so marvelous. I'm gonna buy that.`,
+        Images: [
+          { imageId: 1, link: faker.image.urlLoremFlickr() },
+          { imageId: 2, link: faker.image.urlLoremFlickr() },
+          { imageId: 3, link: faker.image.urlLoremFlickr() },
+          { imageId: 4, link: faker.image.urlLoremFlickr() },
+        ],
+        createdAt: generateDate(),
+      },
+      {
+        postId: 5,
+        user: User[0],
+        content: `${5} Z.com is so marvelous. I'm gonna buy that.`,
+        Images: [
+          { imageId: 1, link: faker.image.urlLoremFlickr() },
+          { imageId: 2, link: faker.image.urlLoremFlickr() },
+          { imageId: 3, link: faker.image.urlLoremFlickr() },
+        ],
+        createdAt: generateDate(),
+      },
+    ]);
+  }),
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  http.get(`${baseUrl}/api/posts/:id`, ({ params }) => {
+    const { id } = params;
+
+    return HttpResponse.json(
+      [
+        {
+          postId: 1,
+          user: User[0],
+          content: `${1} Z.com is so marvelous. I'm gonna buy that.`,
+          Images: [{ imageId: 1, link: faker.image.urlLoremFlickr() }],
+          createdAt: generateDate(),
+        },
+        {
+          postId: 2,
+          user: User[0],
+          content: `${2} Z.com is so marvelous. I'm gonna buy that.`,
+          Images: [
+            { imageId: 1, link: faker.image.urlLoremFlickr() },
+            { imageId: 2, link: faker.image.urlLoremFlickr() },
+          ],
+          createdAt: generateDate(),
+        },
+        {
+          postId: 3,
+          user: User[0],
+          content: `${3} Z.com is so marvelous. I'm gonna buy that.`,
+          Images: [],
+          createdAt: generateDate(),
+        },
+        {
+          postId: 4,
+          user: User[0],
+          content: `${4} Z.com is so marvelous. I'm gonna buy that.`,
+          Images: [
+            { imageId: 1, link: faker.image.urlLoremFlickr() },
+            { imageId: 2, link: faker.image.urlLoremFlickr() },
+            { imageId: 3, link: faker.image.urlLoremFlickr() },
+            { imageId: 4, link: faker.image.urlLoremFlickr() },
+          ],
+          createdAt: generateDate(),
+        },
+        {
+          postId: 5,
+          user: User[0],
+          content: `${5} Z.com is so marvelous. I'm gonna buy that.`,
+          Images: [
+            { imageId: 1, link: faker.image.urlLoremFlickr() },
+            { imageId: 2, link: faker.image.urlLoremFlickr() },
+            { imageId: 3, link: faker.image.urlLoremFlickr() },
+          ],
+          createdAt: generateDate(),
+        },
+      ].find((value) => value.postId === Number(id))
+    );
+  }),
+  http.get(`${baseUrl}/api/posts/:id/comments`, ({ params }) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { id } = params;
     return HttpResponse.json([
       {
         postId: 1,
