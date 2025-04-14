@@ -1,6 +1,5 @@
 import CommentForm from '@/app/(afterLogin)/_component/CommentForm';
 import BackButton from '@/app/(afterLogin)/_component/BackButton';
-import Post from '@/app/(afterLogin)/_component/Post';
 
 export default function SinglePost() {
   return (
@@ -10,9 +9,10 @@ export default function SinglePost() {
         <h3 className="ml-[30px] text-[20px] font-bold">게시하기</h3>
       </div>
       <div className="h-[53px]"></div>
-      <Post />
+      {/* <Post /> */}
       <CommentForm />
       <div>
+        {/* <Post></Post>
         <Post></Post>
         <Post></Post>
         <Post></Post>
@@ -20,8 +20,7 @@ export default function SinglePost() {
         <Post></Post>
         <Post></Post>
         <Post></Post>
-        <Post></Post>
-        <Post></Post>
+        <Post></Post> */}
       </div>
     </main>
   );

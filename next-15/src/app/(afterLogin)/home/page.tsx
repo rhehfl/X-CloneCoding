@@ -1,5 +1,5 @@
 import PostForm from '@/app/(afterLogin)/_component/PostForm';
-import PostRecommends from '@/app/(afterLogin)/home/_component/PostRecommends';
+import PostsDecider from '@/app/(afterLogin)/home/_component/PostsDecider';
 import Tab from '@/app/(afterLogin)/home/_component/Tab';
 import { TabProvider } from '@/app/(afterLogin)/home/_component/TabProvider';
 import getPostRecommends from '@/app/(afterLogin)/home/_lib/getPostRecommends';
@@ -22,9 +22,9 @@ export default async function Home() {
       <HydrationBoundary state={dehydratedState}>
         <TabProvider>
           <Tab />
-          <div className="h-[53px]" />
+          <div className="h-[115px]" />
           <PostForm />
-          <PostRecommends />
+          <PostsDecider />
         </TabProvider>
       </HydrationBoundary>
     </main>

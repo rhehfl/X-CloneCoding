@@ -1,16 +1,18 @@
 import PhotoModalCloseButton from '@/app/(afterLogin)/@modal/[username]/status/[id]/photo/[photoId]/_component/PhotoModalCloseButton';
 import ActionButtons from '@/app/(afterLogin)/_component/ActionButtons';
 import CommentForm from '@/app/(afterLogin)/_component/CommentForm';
-import Post from '@/app/(afterLogin)/_component/Post';
 import ScrollRock from '@/app/_component/ScrollRock';
 import { faker } from '@faker-js/faker';
 
 export default function PageModal() {
-  const image = { imageId: 1, link: faker.image.urlLoremFlickr() };
+  const image = {
+    imageId: 1,
+    link: faker.image.urlPicsumPhotos({ width: 600, height: 700 }),
+  };
   return (
     <>
       <ScrollRock />
-      <div className="fixed z-20 h-full w-full overflow-hidden bg-[rgba(0,0,0,.95)]">
+      <div className="fixed z-20 h-full w-full overflow-hidden bg-[rgba(0,0,0,0.85)]">
         <PhotoModalCloseButton />
         <div className="flex h-full w-full">
           <div className="flex flex-1 flex-col">
@@ -19,19 +21,19 @@ export default function PageModal() {
               style={{ backgroundImage: `url(${image.link})` }}
             ></div>
             <div className="flex items-center justify-center">
-              <div className="h-[60px] w-[600px]">
+              <div className="h-[60px] w-[700px]">
                 <ActionButtons white />
               </div>
             </div>
           </div>
 
           <div className="flex w-[350px] flex-col overflow-auto bg-white">
-            <Post noImage></Post>
+            {/* <Post noImage></Post> */}
             <CommentForm />
+            {/* <Post></Post>
             <Post></Post>
             <Post></Post>
-            <Post></Post>
-            <Post></Post>
+            <Post></Post> */}
           </div>
         </div>
       </div>

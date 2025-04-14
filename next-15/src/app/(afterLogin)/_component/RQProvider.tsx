@@ -5,7 +5,9 @@ import { PropsWithChildren } from 'react';
 
 const queryClient = new QueryClient({
   defaultOptions: {
-    queries: {},
+    queries: {
+      staleTime: 20 * 1000,
+    },
   },
 });
 export default function RQProvider({ children }: PropsWithChildren) {

@@ -18,11 +18,11 @@ export default function Tab() {
       <div className="px-3 py-4 text-[20px] font-bold">홈</div>
       <div className="flex h-full">
         <Link
-          onClick={setFol}
+          onClick={setRec}
           href="home"
           className="flex h-[53px] min-w-[53px] flex-1 items-center justify-center px-4 hover:bg-[rgba(15,20,25,0.1)]"
         >
-          {tab === 'fol' ? (
+          {tab === 'rec' ? (
             <>
               <span className="text-[15px] font-bold text-[rgba(15,20,25)]">
                 추천
@@ -34,11 +34,11 @@ export default function Tab() {
           )}
         </Link>
         <Link
-          onClick={setRec}
+          onClick={setFol}
           href="home"
           className="flex h-[53px] min-w-[53px] flex-1 items-center justify-center px-4 hover:bg-[rgba(15,20,25,0.1)]"
         >
-          {tab === 'rec' ? (
+          {tab === 'fol' ? (
             <>
               <span className="text-[15px] font-bold text-[rgba(15,20,25)]">
                 팔로우 중
