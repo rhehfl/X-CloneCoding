@@ -41,19 +41,23 @@ export const handlers = [
       },
     });
   }),
-  http.get(`${baseUrl}/api/postRecommends`, ({}) => {
+  http.get(`${baseUrl}/api/postRecommends`, async ({ request }) => {
+    const url = new URL(request.url);
+    const cursor = parseInt(url.searchParams.get('cursor') as string) || 0;
+    // await new Promise((resolve) => setTimeout(resolve, 31000));
+
     return HttpResponse.json([
       {
-        postId: 1,
+        postId: cursor + 1,
         user: User[0],
-        content: `${1} Z.com is so marvelous. I'm gonna buy that.`,
+        content: `${cursor + 1} postRecommendsI'm gonna buy that.`,
         Images: [{ imageId: 1, link: faker.image.urlLoremFlickr() }],
         createdAt: generateDate(),
       },
       {
-        postId: 2,
+        postId: cursor + 2,
         user: User[0],
-        content: `${2} Z.com is so marvelous. I'm gonna buy that.`,
+        content: `${cursor + 2} postRecommendsa buy that.`,
         Images: [
           { imageId: 1, link: faker.image.urlLoremFlickr() },
           { imageId: 2, link: faker.image.urlLoremFlickr() },
@@ -61,16 +65,16 @@ export const handlers = [
         createdAt: generateDate(),
       },
       {
-        postId: 3,
+        postId: cursor + 3,
         user: User[0],
-        content: `${3} Z.com is so marvelous. I'm gonna buy that.`,
+        content: `${3} Z.com is so marvepostRecommendsuy that.`,
         Images: [],
         createdAt: generateDate(),
       },
       {
-        postId: 4,
+        postId: cursor + 4,
         user: User[0],
-        content: `${4} Z.com is so marvelous. I'm gonna buy that.`,
+        content: `${cursor + 4} Z.com is so marvelous. I'm gonna buy that.`,
         Images: [
           { imageId: 1, link: faker.image.urlLoremFlickr() },
           { imageId: 2, link: faker.image.urlLoremFlickr() },
@@ -80,7 +84,7 @@ export const handlers = [
         createdAt: generateDate(),
       },
       {
-        postId: 5,
+        postId: cursor + 5,
         user: User[0],
         content: `${5} Z.com is so marvelous. I'm gonna buy that.`,
         Images: [
@@ -255,19 +259,22 @@ export const handlers = [
       },
     ]);
   }),
-  http.get(`${baseUrl}/api/followingPosts`, ({}) => {
+  http.get(`${baseUrl}/api/followingPosts`, ({ request }) => {
+    const url = new URL(request.url);
+    const cursor = parseInt(url.searchParams.get('cursor') as string) || 0;
+
     return HttpResponse.json([
       {
-        postId: 1,
+        postId: cursor + 1,
         user: User[0],
-        content: `${1} Z.com is so marvelous. followData`,
+        content: `${cursor + 1} Z.com ifollowingPosts that.`,
         Images: [{ imageId: 1, link: faker.image.urlLoremFlickr() }],
         createdAt: generateDate(),
       },
       {
-        postId: 2,
+        postId: cursor + 2,
         user: User[0],
-        content: `${2} Z.com is so marvelous. followData`,
+        content: `${cursor + 2} Z.com is so marvelous. I'm gonna buy that.`,
         Images: [
           { imageId: 1, link: faker.image.urlLoremFlickr() },
           { imageId: 2, link: faker.image.urlLoremFlickr() },
@@ -275,16 +282,16 @@ export const handlers = [
         createdAt: generateDate(),
       },
       {
-        postId: 3,
+        postId: cursor + 3,
         user: User[0],
-        content: `${3} Z.com is so marvelous. followData`,
+        content: `${3} Z.com is so marvelous. I'm gonna buy that.`,
         Images: [],
         createdAt: generateDate(),
       },
       {
-        postId: 4,
+        postId: cursor + 4,
         user: User[0],
-        content: `${4} Z.com is so marvelous. followData`,
+        content: `${cursor + 4} Z.com is so marvelous. I'm gonna buy that.`,
         Images: [
           { imageId: 1, link: faker.image.urlLoremFlickr() },
           { imageId: 2, link: faker.image.urlLoremFlickr() },
@@ -294,9 +301,9 @@ export const handlers = [
         createdAt: generateDate(),
       },
       {
-        postId: 5,
+        postId: cursor + 5,
         user: User[0],
-        content: `${5} Z.com is so marvelous. followData`,
+        content: `${5} Z.com is so marvelous. I'm gonna buy that.`,
         Images: [
           { imageId: 1, link: faker.image.urlLoremFlickr() },
           { imageId: 2, link: faker.image.urlLoremFlickr() },

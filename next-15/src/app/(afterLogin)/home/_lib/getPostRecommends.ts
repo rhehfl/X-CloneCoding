@@ -1,8 +1,10 @@
 import { Post } from '@/app/model/Post';
-
-export default async function getPostRecommends(): Promise<Post[]> {
+type Props = { pageParam?: number };
+export default async function getPostRecommends({
+  pageParam,
+}: Props): Promise<Post[]> {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/postRecommends`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/postRecommends?cursor=${pageParam}`,
     {
       next: {
         tags: ['posts', 'recommends'],

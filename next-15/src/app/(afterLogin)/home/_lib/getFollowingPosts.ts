@@ -1,8 +1,11 @@
 import { Post } from '@/app/model/Post';
 
-export default async function getFollowingPosts(): Promise<Post[]> {
+type Props = { pageParam?: number };
+export default async function getFollowingPosts({
+  pageParam,
+}: Props): Promise<Post[]> {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/followingPosts`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/followingPosts?cursor=${pageParam}`,
     {
       next: {
         tags: ['posts', 'following'],
